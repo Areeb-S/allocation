@@ -127,7 +127,7 @@ def get_valid(
 
 def get_counts(
     sample: list[list[int]], all_names: tuple[str]
-) -> np.array | bool:
+):
     # Get matrix that has a 1 for each combination of people
     # who are meeting. E.g if person at index 1, and person
     # at index 2 will be in, then [1,2] and [2,1] will equal

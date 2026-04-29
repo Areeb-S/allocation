@@ -12,7 +12,11 @@ from dash import (
 import dash_ag_grid as dag
 from rand_desks import get_rotation
 
-app = Dash()
+app = Dash(__name__,
+            requests_pathname_prefix="/rota/",
+            routes_pathname_prefix="/rota/",
+            )
+server=app.server
 
 app.layout = html.Div(
     [
@@ -41,12 +45,12 @@ app.layout = html.Div(
         dcc.Input(
             id="tethers",
             type="text",
-            placeholder="tethers: tether1a, tether1b; tether2a, tether2b",
+            placeholder="Tethers: name1a, name1b; name2a, name2b",
             debounce=True,
         ),
         dcc.Textarea(
             id="textarea-example",
-            value="Textarea content initialized\nwith multiple lines of text",
+            value="",
             style={"width": "100%", "height": 300},
             persistence=True,
         ),
@@ -155,4 +159,6 @@ def process_df(
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    #app.run(debug=True)
+    #app.run(debug=True,host="0.0.0.0", port=8050)
+    app.run()
